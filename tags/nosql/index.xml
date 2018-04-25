@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nosql on wt</title>
-    <link>https://imwt.io/tags/nosql/</link>
+    <link>https://chainvm.io/tags/nosql/</link>
     <description>Recent content in Nosql on wt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,15 +10,15 @@
     <webMaster>ctowt@163.com (wt)</webMaster>
     <lastBuildDate>Mon, 23 Apr 2018 21:20:03 +0800</lastBuildDate>
     
-	<atom:link href="https://imwt.io/tags/nosql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chainvm.io/tags/nosql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Linux下安装FoundationDB</title>
-      <link>https://imwt.io/posts/foundationdb/install_foundationdb/</link>
+      <link>https://chainvm.io/posts/foundationdb/install_foundationdb/</link>
       <pubDate>Mon, 23 Apr 2018 21:20:03 +0800</pubDate>
       <author>ctowt@163.com (wt)</author>
-      <guid>https://imwt.io/posts/foundationdb/install_foundationdb/</guid>
+      <guid>https://chainvm.io/posts/foundationdb/install_foundationdb/</guid>
       <description>简介 2015 年苹果公司收购了数据提供商 FoundationDB，目的是为了提升旗下 App Store、iTunes Connect、 iTunes 服务在云端的服务器技</description>
     </item>
     

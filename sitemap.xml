@@ -7,6 +7,11 @@
   </url>
   
   <url>
+    <loc>https://imwt.io/posts/docker/install_docker/</loc>
+    <lastmod>2018-04-25T18:13:43+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://imwt.io/posts/golang/get_goroutine_id/</loc>
     <lastmod>2018-04-25T16:28:29+08:00</lastmod>
   </url>
@@ -37,13 +42,13 @@
   </url>
   
   <url>
-    <loc>https://imwt.io/categories/blockchain/</loc>
+    <loc>https://imwt.io/tags/blockchain/</loc>
     <lastmod>2018-04-25T14:04:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://imwt.io/tags/blockchain/</loc>
+    <loc>https://imwt.io/categories/blockchain/</loc>
     <lastmod>2018-04-25T14:04:57+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -55,19 +60,13 @@
   </url>
   
   <url>
-    <loc>https://imwt.io/categories/db/</loc>
-    <lastmod>2018-04-23T21:20:03+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://imwt.io/tags/db/</loc>
     <lastmod>2018-04-23T21:20:03+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://imwt.io/categories/foundationdb/</loc>
+    <loc>https://imwt.io/categories/db/</loc>
     <lastmod>2018-04-23T21:20:03+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -79,13 +78,19 @@
   </url>
   
   <url>
-    <loc>https://imwt.io/categories/golang/</loc>
-    <lastmod>2018-04-25T16:28:29+08:00</lastmod>
+    <loc>https://imwt.io/categories/foundationdb/</loc>
+    <lastmod>2018-04-23T21:20:03+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://imwt.io/tags/golang/</loc>
+    <lastmod>2018-04-25T16:28:29+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://imwt.io/categories/golang/</loc>
     <lastmod>2018-04-25T16:28:29+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -98,7 +103,7 @@
   
   <url>
     <loc>https://imwt.io/posts/</loc>
-    <lastmod>2018-04-25T16:28:29+08:00</lastmod>
+    <lastmod>2018-04-25T18:13:43+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -110,18 +115,18 @@
   
   <url>
     <loc>https://imwt.io/</loc>
-    <lastmod>2018-04-25T16:28:29+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://imwt.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
-    <lastmod>2018-04-25T14:04:57+08:00</lastmod>
+    <lastmod>2018-04-25T18:13:43+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://imwt.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
+    <lastmod>2018-04-25T14:04:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://imwt.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2018-04-25T14:04:57+08:00</lastmod>
     <priority>0</priority>
   </url>

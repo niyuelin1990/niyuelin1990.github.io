@@ -5,24 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> Golang获取goroutine ID - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
+  <title> anzhaung - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
   <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
-  <meta property="og:title" content="Golang获取goroutine ID" />
-  <meta name="twitter:title" content="Golang获取goroutine ID" />
-  <meta name="description" content="golang本身不提供获取goroutineID的接口，如果要获取goroutineID可以使用下面的方法 package main import ( &quot;bytes&quot; &quot;fmt&quot; &quot;runtime&quot; &quot;strconv&quot; ) func main() { fmt.Println(getGID()) } func getGID() uint64">
-  <meta property="og:description" content="golang本身不提供获取goroutineID的接口，如果要获取goroutineID可以使用下面的方法 package main import ( &quot;bytes&quot; &quot;fmt&quot; &quot;runtime&quot; &quot;strconv&quot; ) func main() { fmt.Println(getGID()) } func getGID() uint64">
-  <meta name="twitter:description" content="golang本身不提供获取goroutineID的接口，如果要获取goroutineID可以使用下面的方法 package main import ( &quot;bytes&quot; &quot;fmt&quot; &quot;runtime&quot; &quot;strconv&quot; ) func main() { fmt.Println(getGID()) } func …">
+  <meta property="og:title" content="anzhaung" />
+  <meta name="twitter:title" content="anzhaung" />
+  <meta name="description" content=" categories: [&ldquo;db&rdquo;, &ldquo;foundationdb&rdquo;] keywords: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, &ldquo;foundationdb&rdquo;] tags: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, &ldquo;foundationdb&rdquo;]
+ddd ">
+  <meta property="og:description" content=" categories: [&ldquo;db&rdquo;, &ldquo;foundationdb&rdquo;] keywords: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, &ldquo;foundationdb&rdquo;] tags: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, &ldquo;foundationdb&rdquo;]
+ddd ">
+  <meta name="twitter:description" content=" categories: [&ldquo;db&rdquo;, &ldquo;foundationdb&rdquo;] keywords: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, &ldquo;foundationdb&rdquo;] tags: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, …">
   <meta name="author" content="{Description { .Site.Author.name }}"/>
   <link href='https://imwt.io/favicon.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
   <meta name="twitter:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://imwt.io/posts/golang/get_goroutine_id/" />
+  <meta property="og:url" content="https://imwt.io/posts/docker/install_docker/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="wt" />
 
   <meta name="generator" content="Hugo 0.40" />
-  <link rel="canonical" href="https://imwt.io/posts/golang/get_goroutine_id/" />
+  <link rel="canonical" href="https://imwt.io/posts/docker/install_docker/" />
   <link rel="alternate" href="https://imwt.io/index.xml" type="application/rss+xml" title="wt">
   <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.css" crossorigin="anonymous">
@@ -184,7 +186,7 @@
         <div class="row">
           <div class="col-lg-12 col-md-12 col-md-offset-0">
             <div class="posts-heading">
-                <h1 align="center">Golang获取goroutine ID</h1>
+                <h1 align="center">anzhaung</h1>
                 
                 
             </div>
@@ -208,8 +210,6 @@
     </section>
     <h5 id="wc">100 Words|Read in about 1 Min</h5>
     <h5 id="tags">Tags: 
-        
-        <a href="https://imwt.io/tags/golang/">golang</a> &nbsp;
     </h5>
 </div>
 
@@ -217,58 +217,26 @@
             <article role="main" class="blog-post" itemprop="articleBody" id="content">
                 
 
-                <p>golang本身不提供获取goroutineID的接口，如果要获取goroutineID可以使用下面的方法</p>
+                
 
-<pre><code class="language-golang">
-package main
+<p>categories: [&ldquo;db&rdquo;, &ldquo;foundationdb&rdquo;]
+keywords: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, &ldquo;foundationdb&rdquo;]
+tags: [&ldquo;db&rdquo;, &ldquo;nosql&rdquo;, &ldquo;foundationdb&rdquo;]</p>
 
-import (
-    &quot;bytes&quot;
-    &quot;fmt&quot;
-    &quot;runtime&quot;
-    &quot;strconv&quot;
-)
-
-func main() {
-    fmt.Println(getGID())
-}
-
-func getGID() uint64 {
-    b := make([]byte, 64)
-    b = b[:runtime.Stack(b, false)]
-    b = bytes.TrimPrefix(b, []byte(&quot;goroutine &quot;))
-    b = b[:bytes.IndexByte(b, ' ')]
-    n, _ := strconv.ParseUint(string(b), 10, 64)
-    return n
-}
-
-</code></pre>
+<h1 id="ddd">ddd</h1>
 
             </article>
 
             <ul class="pager blog-pager">
                 
                 <li class="previous">
-                    <a href="https://imwt.io/posts/golang/resource_pool/" data-toggle="tooltip" data-placement="top" title="Golang简单的对象池">&larr; Previous Post</a>
+                    <a href="https://imwt.io/posts/golang/get_goroutine_id/" data-toggle="tooltip" data-placement="top" title="Golang获取goroutine ID">&larr; Previous Post</a>
                 </li>
                  
-                <li class="next">
-                    <a href="https://imwt.io/posts/docker/install_docker/" data-toggle="tooltip" data-placement="top" title="anzhaung">Next Post &rarr;</a>
-                </li>
-                
             </ul>
             
             <div>
                  
-                <h2>See Also</h2>
-                <ul>
-                    
-                    <li><a href="/posts/golang/resource_pool/">Golang简单的对象池</a></li>
-                    
-                    <li><a href="/posts/golang/golang-append/">golang中append函数返回值必须有变量接收的原因探究</a></li>
-                    
-                </ul>
-                
             </div>
             
             
@@ -280,8 +248,6 @@ func getGID() uint64 {
     </section>
     <h5 id="wc">100 Words|Read in about 1 Min</h5>
     <h5 id="tags">Tags: 
-        
-        <a href="https://imwt.io/tags/golang/">golang</a> &nbsp;
     </h5>
 </div>
 

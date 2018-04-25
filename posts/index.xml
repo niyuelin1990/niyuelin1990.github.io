@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on wt</title>
+    <link>https://imwt.io/posts/</link>
+    <description>Recent content in Posts on wt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>ctowt@163.com (wt)</managingEditor>
+    <webMaster>ctowt@163.com (wt)</webMaster>
+    <lastBuildDate>Wed, 25 Apr 2018 16:28:29 +0800</lastBuildDate>
+    
+	<atom:link href="https://imwt.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang获取goroutine ID</title>
+      <link>https://imwt.io/posts/golang/get_goroutine_id/</link>
+      <pubDate>Wed, 25 Apr 2018 16:28:29 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/posts/golang/get_goroutine_id/</guid>
+      <description>golang本身不提供获取goroutineID的接口，如果要获取goroutineID可以使用下面的方法 package main import ( &amp;quot;bytes&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;runtime&amp;quot; &amp;quot;strconv&amp;quot; ) func main() { fmt.Println(getGID()) } func getGID() uint64</description>
+    </item>
+    
+    <item>
+      <title>Golang简单的对象池</title>
+      <link>https://imwt.io/posts/golang/resource_pool/</link>
+      <pubDate>Wed, 25 Apr 2018 16:05:28 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/posts/golang/resource_pool/</guid>
+      <description>复用的好处 减少gc压力 减少不必要的内存分配 import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; ) var bufPool sync.Pool type buf struct { b []byte } func main() { for { var bf *buf // 从池中取数据 v := bufPool.Get() if v == nil { //若不存在buf，创</description>
+    </item>
+    
+    <item>
+      <title>区块链简介</title>
+      <link>https://imwt.io/posts/blockchain/introduce_blockchain/</link>
+      <pubDate>Wed, 25 Apr 2018 14:04:57 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/posts/blockchain/introduce_blockchain/</guid>
+      <description>1. 区块链的本质 区块链是什么？一句话，它是一种特殊的分布式数据库。 首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可</description>
+    </item>
+    
+    <item>
+      <title>Linux下安装FoundationDB</title>
+      <link>https://imwt.io/posts/foundationdb/install_foundationdb/</link>
+      <pubDate>Mon, 23 Apr 2018 21:20:03 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/posts/foundationdb/install_foundationdb/</guid>
+      <description>简介 2015 年苹果公司收购了数据提供商 FoundationDB，目的是为了提升旗下 App Store、iTunes Connect、 iTunes 服务在云端的服务器技</description>
+    </item>
+    
+    <item>
+      <title>golang中append函数返回值必须有变量接收的原因探究</title>
+      <link>https://imwt.io/posts/golang/golang-append/</link>
+      <pubDate>Wed, 06 Sep 2017 15:35:18 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/posts/golang/golang-append/</guid>
+      <description>append函数返回更新后的slice（长度和容量可能会变），必须重新用slice的变量接收，不然无法编译通过 为了弄明白为什么，首先我们需要</description>
+    </item>
+    
+  </channel>
+</rss>

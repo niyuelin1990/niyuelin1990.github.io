@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>区块链 on wt</title>
+    <link>https://imwt.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+    <description>Recent content in 区块链 on wt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>ctowt@163.com (wt)</managingEditor>
+    <webMaster>ctowt@163.com (wt)</webMaster>
+    <lastBuildDate>Wed, 25 Apr 2018 14:04:57 +0800</lastBuildDate>
+    
+	<atom:link href="https://imwt.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>区块链简介</title>
+      <link>https://imwt.io/posts/blockchain/introduce_blockchain/</link>
+      <pubDate>Wed, 25 Apr 2018 14:04:57 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/posts/blockchain/introduce_blockchain/</guid>
+      <description>1. 区块链的本质 区块链是什么？一句话，它是一种特殊的分布式数据库。 首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可</description>
+    </item>
+    
+  </channel>
+</rss>

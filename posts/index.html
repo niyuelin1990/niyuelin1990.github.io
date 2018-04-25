@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Posts - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
+  <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
+  <meta property="og:title" content="Posts" />
+  <meta name="twitter:title" content="Posts" />
+  <meta name="author" content="{Description { .Site.Author.name }}"/>
+  <link href='https://imwt.io/favicon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://imwt.io/posts/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="wt" />
+
+  <meta name="generator" content="Hugo 0.40" />
+  <link rel="canonical" href="https://imwt.io/posts/" />
+  <link rel="alternate" href="https://imwt.io/index.xml" type="application/rss+xml" title="wt">
+  <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://imwt.io/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+  <link rel="stylesheet" href="https://imroc.io/static/prism/prism.css" />
+
+  
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/default-skin/default-skin.min.css" crossorigin="anonymous" />
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://imwt.io/">wt</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://imwt.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://imwt.io/categories/docker">docker</a>
+                
+                
+                  <a href="https://imwt.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://imwt.io/categories/foundationdb">db</a>
+                
+                
+                  <a href="https://imwt.io/categories/golang">golang</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="about" href="/about/about/">about</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="wt" href="https://imwt.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" alt="wt" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  <header class="header-section ">
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="page-heading">
+              <h1>Posts</h1>
+              <hr class="small">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://imwt.io/posts/golang/get_goroutine_id/">
+                <h2 class="post-title">Golang获取goroutine ID</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 25, 2018
+              </p>
+              <div class="post-entry">
+                
+                  golang本身不提供获取goroutineID的接口，如果要获取goroutineID可以使用下面的方法 package main import ( &quot;bytes&quot; &quot;fmt&quot; &quot;runtime&quot; &quot;strconv&quot; ) func main() { fmt.Println(getGID()) } func getGID() uint64
+                  <a href="https://imwt.io/posts/golang/get_goroutine_id/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://imwt.io/tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://imwt.io/posts/golang/resource_pool/">
+                <h2 class="post-title">Golang简单的对象池</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 25, 2018
+              </p>
+              <div class="post-entry">
+                
+                  复用的好处 减少gc压力 减少不必要的内存分配 import ( &quot;fmt&quot; &quot;sync&quot; ) var bufPool sync.Pool type buf struct { b []byte } func main() { for { var bf *buf // 从池中取数据 v := bufPool.Get() if v == nil { //若不存在buf，创
+                  <a href="https://imwt.io/posts/golang/resource_pool/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://imwt.io/tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://imwt.io/posts/blockchain/introduce_blockchain/">
+                <h2 class="post-title">区块链简介</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 25, 2018
+              </p>
+              <div class="post-entry">
+                
+                  1. 区块链的本质 区块链是什么？一句话，它是一种特殊的分布式数据库。 首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可
+                  <a href="https://imwt.io/posts/blockchain/introduce_blockchain/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://imwt.io/tags/blockchain/">blockchain</a>&nbsp;
+                  
+                    #<a href="https://imwt.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://imwt.io/posts/foundationdb/install_foundationdb/">
+                <h2 class="post-title">Linux下安装FoundationDB</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 23, 2018
+              </p>
+              <div class="post-entry">
+                
+                  简介 2015 年苹果公司收购了数据提供商 FoundationDB，目的是为了提升旗下 App Store、iTunes Connect、 iTunes 服务在云端的服务器技
+                  <a href="https://imwt.io/posts/foundationdb/install_foundationdb/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://imwt.io/tags/db/">db</a>&nbsp;
+                  
+                    #<a href="https://imwt.io/tags/nosql/">nosql</a>&nbsp;
+                  
+                    #<a href="https://imwt.io/tags/foundationdb/">foundationdb</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://imwt.io/posts/golang/golang-append/">
+                <h2 class="post-title">golang中append函数返回值必须有变量接收的原因探究</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on September 6, 2017
+              </p>
+              <div class="post-entry">
+                
+                  append函数返回更新后的slice（长度和容量可能会变），必须重新用slice的变量接收，不然无法编译通过 为了弄明白为什么，首先我们需要
+                  <a href="https://imwt.io/posts/golang/golang-append/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://imwt.io/tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+        </div>
+        
+      </div>
+    <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ctowt@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/shaocongcong" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://imwt.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017
+          
+            
+              <a href="imwt.io">wt</a>
+                      
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://imwt.io/">wt</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.js"></script>
+<script src="https://imwt.io/js/auto-render.min.js"></script>
+<script src="https://imwt.io/js/main.js"></script>
+<script src="https://imroc.io/static/prism/prism.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

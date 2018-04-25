@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on wt</title>
+    <link>https://imwt.io/categories/</link>
+    <description>Recent content in Categories on wt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>ctowt@163.com (wt)</managingEditor>
+    <webMaster>ctowt@163.com (wt)</webMaster>
+    <lastBuildDate>Wed, 25 Apr 2018 14:04:57 +0800</lastBuildDate>
+    
+	<atom:link href="https://imwt.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blockchain</title>
+      <link>https://imwt.io/categories/blockchain/</link>
+      <pubDate>Wed, 25 Apr 2018 14:04:57 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/categories/blockchain/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Db</title>
+      <link>https://imwt.io/categories/db/</link>
+      <pubDate>Mon, 23 Apr 2018 21:20:03 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/categories/db/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Foundationdb</title>
+      <link>https://imwt.io/categories/foundationdb/</link>
+      <pubDate>Mon, 23 Apr 2018 21:20:03 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/categories/foundationdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://imwt.io/categories/golang/</link>
+      <pubDate>Wed, 25 Apr 2018 16:28:29 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>区块链</title>
+      <link>https://imwt.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+      <pubDate>Wed, 25 Apr 2018 14:04:57 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

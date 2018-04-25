@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Linux下安装FoundationDB - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
+  <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
+  <meta property="og:title" content="Linux下安装FoundationDB" />
+  <meta name="twitter:title" content="Linux下安装FoundationDB" />
+  <meta name="description" content="简介 2015 年苹果公司收购了数据提供商 FoundationDB，目的是为了提升旗下 App Store、iTunes Connect、 iTunes 服务在云端的服务器技">
+  <meta property="og:description" content="简介 2015 年苹果公司收购了数据提供商 FoundationDB，目的是为了提升旗下 App Store、iTunes Connect、 iTunes 服务在云端的服务器技">
+  <meta name="twitter:description" content="简介 2015 年苹果公司收购了数据提供商 FoundationDB，目的是为了提升旗下 App Store、iTunes Connect、 iTunes 服务在云端的服务器技">
+  <meta name="author" content="{Description { .Site.Author.name }}"/>
+  <link href='https://imwt.io/favicon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://imwt.io/posts/foundationdb/install_foundationdb/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="wt" />
+
+  <meta name="generator" content="Hugo 0.40" />
+  <link rel="canonical" href="https://imwt.io/posts/foundationdb/install_foundationdb/" />
+  <link rel="alternate" href="https://imwt.io/index.xml" type="application/rss+xml" title="wt">
+  <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://imwt.io/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+  <link rel="stylesheet" href="https://imroc.io/static/prism/prism.css" />
+
+  
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/default-skin/default-skin.min.css" crossorigin="anonymous" />
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://imwt.io/">wt</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://imwt.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://imwt.io/categories/docker">docker</a>
+                
+                
+                  <a href="https://imwt.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://imwt.io/categories/foundationdb">db</a>
+                
+                
+                  <a href="https://imwt.io/categories/golang">golang</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="about" href="/about/about/">about</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="wt" href="https://imwt.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" alt="wt" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Linux下安装FoundationDB</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Apr 23, 2018</h4>
+    </section>
+    <h5 id="wc">700 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://imwt.io/tags/db/">db</a> &nbsp;
+        
+        <a href="https://imwt.io/tags/nosql/">nosql</a> &nbsp;
+        
+        <a href="https://imwt.io/tags/foundationdb/">foundationdb</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#ubuntu">Ubuntu</a></li>
+<li><a href="#rhel-centos-6">RHEL/CentOS 6</a></li>
+<li><a href="#rhel-centos-7">RHEL/CentOS 7</a></li>
+<li><a href="#测试">测试</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+
+
+                
+
+<!-- # Linux下安装FoundationDB -->
+
+<h3 id="简介">简介</h3>
+
+<p>2015 年苹果公司收购了数据提供商 FoundationDB，目的是为了提升旗下 App Store、iTunes Connect、 iTunes 服务在云端的服务器技术。FoundationDB 随之从开源变为闭源，而三年后的现在，它又重新开源了。
+FoundationDB是”一个能在多集群服务器上存放大规模结构化数据的分布式数据库“。该数据库系统专注于高性能、高可扩展性、优秀的容错能力。
+FoundationDB是由戴夫·罗森塔尔（Dave Rosenthal）、戴夫·谢勒（Dave Scherer）、和尼克拉维泽（Nick Lavezzo）于2009年开发的，旨在建立一个符合ACID约束的NoSQL数据库，ACID是一种即使在发生错误时也保证数据完整性的数据库机制。</p>
+
+<ul>
+<li>[下载地址][<a href="https://apple.github.io/foundationdb/downloads.html">https://apple.github.io/foundationdb/downloads.html</a>]</li>
+</ul>
+
+<p><code>系统要求:</code></p>
+
+<ul>
+<li>64位操作系统</li>
+<li>RHEL/CentOS 6.x或者7.x</li>
+<li>Ubuntu 12.04或更高版本</li>
+<li>不支持的Linux发行版包含：
+内核版本介于2.6.33和3.0.x之间（含）或3.7或更高,适用于.deb或.rpm包 或者，macOS 10.7或更高版本</li>
+</ul>
+
+<blockquote>
+<pre><code> 警告： macOS下FoundationDB仅适用于本地访问。
+</code></pre>
+</blockquote>
+
+<h3 id="ubuntu">Ubuntu</h3>
+
+<blockquote>
+<pre><code> google@localhost$ sudo dpkg -i foundationdb-clients_5.1.5-1_amd64.deb foundationdb-server_5.1.5-1_amd64.deb
+</code></pre>
+</blockquote>
+
+<h3 id="rhel-centos-6">RHEL/CentOS 6</h3>
+
+<blockquote>
+<pre><code> google@localhost$ sudo rpm -Uvh foundationdb-clients-5.1.5-1.el7.x86_64.rpm foundationdb-server-5.1.5-1.el7.x86_64.rpm
+</code></pre>
+</blockquote>
+
+<h3 id="rhel-centos-7">RHEL/CentOS 7</h3>
+
+<blockquote>
+<pre><code> google@localhost$ sudo rpm -Uvh foundationdb-clients-5.1.5-1.el7.x86_64.rpm  foundationdb-server-5.1.5-1.el7.x86_64.rpm
+</code></pre>
+</blockquote>
+
+<h3 id="测试">测试</h3>
+
+<pre><code class="language-sql">google@localhost$ fdbcli
+Using cluster file `/etc/foundationdb/fdb.cluster'.
+
+The database is available.
+
+Welcome to the fdbcli. For help, type `help'.
+fdb&gt; status
+
+Configuration:
+  Redundancy mode        - single
+  Storage engine         - memory
+  Coordinators           - 1
+
+Cluster:
+  FoundationDB processes - 1
+  Machines               - 1
+  Memory availability    - 4.1 GB per process on machine with least available
+  Fault Tolerance        - 0 machines
+  Server time            - Thu Mar 15 14:41:34 2018
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 8 MB
+  Disk space used        - 103 MB
+
+Operating space:
+  Storage server         - 1.0 GB free on most full server
+  Transaction log        - 1.0 GB free on most full server
+
+Workload:
+  Read rate              - 2 Hz
+  Write rate             - 0 Hz
+  Transactions started   - 2 Hz
+  Transactions committed - 0 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Client time: Thu Mar 15 14:41:34 2018
+</code></pre>
+
+<p>如果显示上述代表成功。</p>
+
+<hr />
+
+<p>[1] <a href="https://apple.github.io/foundationdb/downloads.html">https://apple.github.io/foundationdb/downloads.html</a></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://imwt.io/posts/golang/golang-append/" data-toggle="tooltip" data-placement="top" title="golang中append函数返回值必须有变量接收的原因探究">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://imwt.io/posts/blockchain/introduce_blockchain/" data-toggle="tooltip" data-placement="top" title="区块链简介">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Apr 23, 2018</h4>
+    </section>
+    <h5 id="wc">700 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://imwt.io/tags/db/">db</a> &nbsp;
+        
+        <a href="https://imwt.io/tags/nosql/">nosql</a> &nbsp;
+        
+        <a href="https://imwt.io/tags/foundationdb/">foundationdb</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+			
+               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    <div>
+        <h2> Comments </h2>
+    </div>
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://imroc.io/static/gitment/default.css">
+    <script src="https://imroc.io/static/gitment/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+			owner: 'shaocongcong', 
+			repo: 'shaocongcong.github.io', 
+            oauth: {
+				client_id: '',
+				client_secret: '',
+            },
+        })
+        gitment.render('container')
+    </script>
+</aside>
+</div>
+
+			
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ctowt@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/shaocongcong" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://imwt.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017
+          
+            
+              <a href="imwt.io">wt</a>
+                      
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://imwt.io/">wt</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.js"></script>
+<script src="https://imwt.io/js/auto-render.min.js"></script>
+<script src="https://imwt.io/js/main.js"></script>
+<script src="https://imroc.io/static/prism/prism.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 区块链简介 - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
+  <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
+  <meta property="og:title" content="区块链简介" />
+  <meta name="twitter:title" content="区块链简介" />
+  <meta name="description" content="1. 区块链的本质 区块链是什么？一句话，它是一种特殊的分布式数据库。 首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可">
+  <meta property="og:description" content="1. 区块链的本质 区块链是什么？一句话，它是一种特殊的分布式数据库。 首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可">
+  <meta name="twitter:description" content="1. 区块链的本质 区块链是什么？一句话，它是一种特殊的分布式数据库。 首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可">
+  <meta name="author" content="{Description { .Site.Author.name }}"/>
+  <link href='https://imwt.io/favicon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://imwt.io/posts/blockchain/introduce_blockchain/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="wt" />
+
+  <meta name="generator" content="Hugo 0.40" />
+  <link rel="canonical" href="https://imwt.io/posts/blockchain/introduce_blockchain/" />
+  <link rel="alternate" href="https://imwt.io/index.xml" type="application/rss+xml" title="wt">
+  <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://imwt.io/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+  <link rel="stylesheet" href="https://imroc.io/static/prism/prism.css" />
+
+  
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/default-skin/default-skin.min.css" crossorigin="anonymous" />
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://imwt.io/">wt</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://imwt.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://imwt.io/categories/docker">docker</a>
+                
+                
+                  <a href="https://imwt.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://imwt.io/categories/foundationdb">db</a>
+                
+                
+                  <a href="https://imwt.io/categories/golang">golang</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="about" href="/about/about/">about</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="wt" href="https://imwt.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" alt="wt" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">区块链简介</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Wed Apr 25, 2018</h4>
+    </section>
+    <h5 id="wc">3000 Words|Read in about 6 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://imwt.io/tags/blockchain/">blockchain</a> &nbsp;
+        
+        <a href="https://imwt.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-区块链的本质">1. 区块链的本质</a></li>
+<li><a href="#2-区块链的最大特点">2. 区块链的最大特点</a></li>
+<li><a href="#3-区块">3. 区块</a></li>
+<li><a href="#4-hash的不可修改性">4. Hash的不可修改性</a></li>
+<li><a href="#5-采矿">5. 采矿</a></li>
+<li><a href="#6-难度系数">6. 难度系数</a></li>
+<li><a href="#7-难度系数的动态调节">7. 难度系数的动态调节</a></li>
+<li><a href="#8-区块链的分叉">8. 区块链的分叉</a></li>
+<li><a href="#9-总结">9. 总结</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+
+
+                
+
+<p><img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524640598/blog/blockchain/introduce_blockchain/blockchain.jpg" alt="blockchain" />
+<!--  --></p>
+
+<h3 id="1-区块链的本质">1. 区块链的本质</h3>
+
+<p>区块链是什么？一句话，它是一种特殊的<strong>分布式数据库。</strong>
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524640965/blog/blockchain/introduce_blockchain/db.jpg" alt="db" />
+<strong>首先，区块链的主要作用是储存信息。</strong>任何需要保存的信息，都可以写入区块链，也可以从里面读取，所以它是数据库。</p>
+
+<p><strong>其次，任何人都可以架设服务器，加入区块链网络，成为一个节点。</strong>区块链的世界里面，没有中心节点，每个节点都是平等的，都保存着整个数据库。你可以向任何一个节点，写入/读取数据，因为所有节点最后都会同步，保证区块链一致。</p>
+
+<h3 id="2-区块链的最大特点">2. 区块链的最大特点</h3>
+
+<p>分布式数据库并非新发明，市场上早有此类产品。但是，区块链有一个革命性特点。</p>
+
+<p><strong>区块链没有管理员，它是彻底无中心的。</strong>其他的数据库都有管理员，但是区块链没有。如果有人想对区块链添加审核，也实现不了，因为它的设计目标就是防止出现居于中心地位的管理当局。
+正是因为无法管理，区块链才能做到无法被控制。否则一旦大公司大集团控制了管理权，他们就会控制整个平台，其他使用者就都必须听命于他们了。
+但是，没有了管理员，人人都可以往里面写入数据，怎么才能保证数据是可信的呢？被坏人改了怎么办？请接着往下读，这就是区块链奇妙的地方。</p>
+
+<h3 id="3-区块">3. 区块</h3>
+
+<p>区块链由一个个区块（block）组成。区块很像数据库的记录，<strong>每次写入数据，就是创建一个区块。</strong>
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524641280/blog/blockchain/introduce_blockchain/block_head.jpg" alt="block_head" /></p>
+
+<p>每个区块包含两个部分。</p>
+
+<ul>
+<li>区块头（Head）：记录当前区块的元信息</li>
+<li>区块体（Body）：实际数据</li>
+</ul>
+
+<p>区块头包含了当前区块的多项元信息。</p>
+
+<ul>
+<li>生成时间</li>
+<li>实际数据（即区块体）的Hash</li>
+<li>上一个区块的Hash</li>
+<li>……</li>
+</ul>
+
+<p>这里，你需要理解什么叫Hash，这是理解区块链必需的。
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524641498/blog/blockchain/introduce_blockchain/block_head_body.png" alt="block_head_body" /></p>
+
+<p>所谓Hash就是计算机可以对任意内容，计算出一个长度相同的特征值。区块链的Hash长度是256位，这就是说，不管原始内容是什么，最后都会计算出一个256位的二进制数字。<strong>而且可以保证，只要原始内容不同，对应的Hash一定是不同的。</strong></p>
+
+<p>举例来说，字符串123的Hash是（十六进制）：8fdc205a9f19cc1c7507a60c4f01b13d11d7fd0，转成二进制就是256位，而且只有123能得到这个 Hash。
+因此，就有两个重要的推论。</p>
+
+<ul>
+<li>推论1：每个区块的Hash都是不一样的，可以通过Hash标识区块。</li>
+<li>推论2：如果区块的内容变了，它的Hash一定会改变。</li>
+</ul>
+
+<h3 id="4-hash的不可修改性">4. Hash的不可修改性</h3>
+
+<p>区块与Hash是一一对应的，每个区块的Hash都是针对&rdquo;区块头&rdquo;（Head）计算的。</p>
+
+<p>-Hash= SHA256(区块头)</p>
+
+<p>上面就是区块Hash的计算公式，Hash 由区块头唯一决定，SHA256是区块链的Hash算法。
+前面说过，区块头包含很多内容，其中有当前区块体的 Hash（注意是&rdquo;区块体&rdquo;的 Hash，而不是整个区块），还有上一个区块的 Hash。这意味着，如果当前区块的内容变了，或者上一个区块的Hash变了，一定会引起当前区块的Hash改变。</p>
+
+<p>这一点对区块链有重大意义。如果有人修改了一个区块，该区块的Hash就变了。为了让后面的区块还能连到它，该人必须同时修改后面所有的区块，否则被改掉的区块就脱离区块链了。由于后面要提到的原因，Hash 的计算很耗时，同时修改多个区块几乎不可能发生，除非有人掌握了全网<strong>51%</strong>以上的计算能力。
+正是通过这种联动机制，<strong>区块链保证了自身的可靠性，数据一旦写入，就无法被篡改。这就像历史一样，发生了就是发生了，从此再无法改变。</strong></p>
+
+<p><img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524641851/blog/blockchain/introduce_blockchain/block_list.jpg" alt="block_list" />
+每个区块都连着上一个区块，这也是&rdquo;区块链&rdquo;这个名字的由来。</p>
+
+<h3 id="5-采矿">5. 采矿</h3>
+
+<p>由于必须保证节点之间的同步，所以新区块的添加速度不能太快。试想一下，你刚刚同步了一个区块，准备基于它生成下一个区块，但这时别的节点又有新区块生成，你不得不放弃做了一半的计算，再次去同步。因为每个区块的后面，只能跟着一个区块，你永远只能在最新区块的后面，生成下一个区块。所以，你别无选择，一听到信号，就必须立刻同步。</p>
+
+<p>所以，区块链的发明者中本聪（这是假名，真实身份至今未知）故意让添加新区块，变得很困难。他的设计是，平均每10分钟，全网才能生成一个新区块，一小时也就六个。</p>
+
+<p>这种产出速度不是通过命令达成的，而是故意设置了海量的计算。也就是说，<strong>只有通过极其大量的计算，才能得到当前区块的有效Hash，从而把新区块添加到区块链。由于计算量太大，所以快不起来。</strong></p>
+
+<p>这个过程就叫做采矿（mining），因为计算有效Hash的难度，好比在全世界的沙子里面，找到一粒符合条件的沙子。计算Hash的机器就叫做矿机，操作矿机的人就叫做矿工。</p>
+
+<p><img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524642115/blog/blockchain/introduce_blockchain/block_miner.jpg" alt="block_miner" /></p>
+
+<h3 id="6-难度系数">6. 难度系数</h3>
+
+<p>读到这里，你可能会有一个疑问，人们都说采矿很难，可是采矿不就是用计算机算出一个Hash吗，这正是计算机的强项啊，怎么会变得很难，迟迟算不出来呢？</p>
+
+<p>原来不是任意一个Hash都可以，只有满足条件的Hash才会被区块链接受。这个条件特别苛刻，使得绝大部分Hash都不满足要求，必须重算。</p>
+
+<p>原来，区块头包含一个<strong>难度系数（difficulty），</strong>这个值决定了计算Hash的难度。举例来说，第100000个区块的难度系数是14484.16236122。</p>
+
+<p><img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524642376/blog/blockchain/introduce_blockchain/difficulty_1.png" alt="difficulty_1" /></p>
+
+<p>区块链协议规定，使用一个常量除以难度系数，可以得到<strong>目标值（target）</strong>。显然，难度系数越大，目标值就越小。</p>
+
+<p><img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524642376/blog/blockchain/introduce_blockchain/difficulty_2.png" alt="difficulty_2" /></p>
+
+<p>Hash的有效性跟目标值密切相关，只有小于目标值的Hash才是有效的，否则Hash无效，必须重算。由于目标值非常小，Hash 小于该值的机会极其渺茫，可能计算10亿次，才算中一次。这就是采矿如此之慢的根本原因。
+区块头里面还有一个 Nonce 值，记录了 Hash 重算的次数。第 100000 个区块的 Nonce 值是274148111，即计算了 2.74 亿次，才得到了一个有效的 Hash，该区块才能加入区块链。</p>
+
+<h3 id="7-难度系数的动态调节">7. 难度系数的动态调节</h3>
+
+<p>就算采矿很难，但也没法保证，正好十分钟产出一个区块，有时一分钟就算出来了，有时几个小时可能也没结果。总体来看，随着硬件设备的提升，以及矿机的数量增长，计算速度一定会越来越快。</p>
+
+<p>为了将产出速率恒定在十分钟，中本聪还设计了难度系数的动态调节机制。他规定，难度系数每两周（2016个区块）调整一次。如果这两周里面，区块的平均生成速度是9分钟，就意味着比法定速度快了10%，因此难度系数就要调高10%；如果平均生成速度是11分钟，就意味着比法定速度慢了10%，因此难度系数就要调低10%。
+<strong>难度系数越调越高（目标值越来越小），导致了采矿越来越难。</strong></p>
+
+<h3 id="8-区块链的分叉">8. 区块链的分叉</h3>
+
+<p>即使区块链是可靠的，现在还有一个问题没有解决：如果两个人同时向区块链写入数据，也就是说，同时有两个区块加入，因为它们都连着前一个区块，就形成了分叉。这时应该采纳哪一个区块呢？
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524642682/blog/blockchain/introduce_blockchain/fork_1.png" alt="fork_1" />
+现在的规则是，新节点总是采用最长的那条区块链。如果区块链有分叉，将看哪个分支在分叉点后面，先达到6个新区块（称为&rdquo;六次确认&rdquo;）。按照10分钟一个区块计算，一小时就可以确认。
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1524642682/blog/blockchain/introduce_blockchain/fork_1.png" alt="fork_2" />
+由于新区块的生成速度由计算能力决定，所以这条规则就是说，<strong>拥有大多数计算能力的那条分支，就是正宗的比特链。</strong></p>
+
+<h3 id="9-总结">9. 总结</h3>
+
+<p>区块链和相关技术变革将极大地颠覆当前的经济形式。工业革命开创了一个以层级结构和金融资本主义为基础商业模式的世界。对未来几十年影响最大的科技已经出现了。它不是社交媒体，不是大数据，不是机器人，甚至不是人工智能。也许你听了答案会很惊讶，它是比特币这类数字货币的底层技术——区块链。目前这并不是一个振聋发聩的词，但我相信，它代表着下一代互联网。</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://imwt.io/posts/foundationdb/install_foundationdb/" data-toggle="tooltip" data-placement="top" title="Linux下安装FoundationDB">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://imwt.io/posts/golang/resource_pool/" data-toggle="tooltip" data-placement="top" title="Golang简单的对象池">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Wed Apr 25, 2018</h4>
+    </section>
+    <h5 id="wc">3000 Words|Read in about 6 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://imwt.io/tags/blockchain/">blockchain</a> &nbsp;
+        
+        <a href="https://imwt.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+			
+               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    <div>
+        <h2> Comments </h2>
+    </div>
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://imroc.io/static/gitment/default.css">
+    <script src="https://imroc.io/static/gitment/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+			owner: 'shaocongcong', 
+			repo: 'shaocongcong.github.io', 
+            oauth: {
+				client_id: '',
+				client_secret: '',
+            },
+        })
+        gitment.render('container')
+    </script>
+</aside>
+</div>
+
+			
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ctowt@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/shaocongcong" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://imwt.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017
+          
+            
+              <a href="imwt.io">wt</a>
+                      
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://imwt.io/">wt</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.js"></script>
+<script src="https://imwt.io/js/auto-render.min.js"></script>
+<script src="https://imwt.io/js/main.js"></script>
+<script src="https://imroc.io/static/prism/prism.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

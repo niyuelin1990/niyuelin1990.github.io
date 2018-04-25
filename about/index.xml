@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on wt</title>
+    <link>https://imwt.io/about/</link>
+    <description>Recent content in Abouts on wt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>ctowt@163.com (wt)</managingEditor>
+    <webMaster>ctowt@163.com (wt)</webMaster>
+    
+	<atom:link href="https://imwt.io/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>about</title>
+      <link>https://imwt.io/about/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://imwt.io/about/about/</guid>
+      <description>hey guys, I&amp;rsquo;m scc :)</description>
+    </item>
+    
+  </channel>
+</rss>

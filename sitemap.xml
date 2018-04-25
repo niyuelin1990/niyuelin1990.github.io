@@ -42,13 +42,13 @@
   </url>
   
   <url>
-    <loc>https://chainvm.io/tags/blockchain/</loc>
+    <loc>https://chainvm.io/categories/blockchain/</loc>
     <lastmod>2018-04-25T14:04:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://chainvm.io/categories/blockchain/</loc>
+    <loc>https://chainvm.io/tags/blockchain/</loc>
     <lastmod>2018-04-25T14:04:57+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -60,19 +60,13 @@
   </url>
   
   <url>
-    <loc>https://chainvm.io/tags/db/</loc>
-    <lastmod>2018-04-23T21:20:03+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://chainvm.io/categories/db/</loc>
     <lastmod>2018-04-23T21:20:03+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://chainvm.io/tags/foundationdb/</loc>
+    <loc>https://chainvm.io/tags/db/</loc>
     <lastmod>2018-04-23T21:20:03+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -84,13 +78,19 @@
   </url>
   
   <url>
-    <loc>https://chainvm.io/tags/golang/</loc>
-    <lastmod>2018-04-25T16:28:29+08:00</lastmod>
+    <loc>https://chainvm.io/tags/foundationdb/</loc>
+    <lastmod>2018-04-23T21:20:03+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://chainvm.io/categories/golang/</loc>
+    <lastmod>2018-04-25T16:28:29+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://chainvm.io/tags/golang/</loc>
     <lastmod>2018-04-25T16:28:29+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -120,13 +120,13 @@
   </url>
   
   <url>
-    <loc>https://chainvm.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
+    <loc>https://chainvm.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2018-04-25T14:04:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://chainvm.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
+    <loc>https://chainvm.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2018-04-25T14:04:57+08:00</lastmod>
     <priority>0</priority>
   </url>

@@ -9,9 +9,9 @@
   <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
   <meta property="og:title" content="以太坊ipc实现方式以及golang有用的库---npipe" />
   <meta name="twitter:title" content="以太坊ipc实现方式以及golang有用的库---npipe" />
-  <meta name="description" content="npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为">
-  <meta property="og:description" content="npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为">
-  <meta name="twitter:description" content="npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为">
+  <meta name="description" content="背景 以太坊rpc有4种实现方式分别是inproc，ipc，http，ws。inproc是进程内部调用，为console使用；http是以ht">
+  <meta property="og:description" content="背景 以太坊rpc有4种实现方式分别是inproc，ipc，http，ws。inproc是进程内部调用，为console使用；http是以ht">
+  <meta name="twitter:description" content="背景 以太坊rpc有4种实现方式分别是inproc，ipc，http，ws。inproc是进程内部调用，为console使用；http是以ht">
   <meta name="author" content="{Description { .Site.Author.name }}"/>
   <link href='https://chainvm.io/favicon.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
@@ -206,7 +206,7 @@
     <section id="datecount">
         <h4 id="date"> Fri Apr 27, 2018</h4>
     </section>
-    <h5 id="wc">800 Words|Read in about 2 Min</h5>
+    <h5 id="wc">1000 Words|Read in about 2 Min</h5>
     <h5 id="tags">Tags: 
         
         <a href="https://chainvm.io/tags/blockchain/">blockchain</a> &nbsp;
@@ -223,11 +223,14 @@
 <ul>
 <li>
 <ul>
-<li><a href="#npipe">npipe</a>
+<li><a href="#背景">背景</a></li>
+<li><a href="#npipe">npipe</a></li>
+<li><a href="#npipe例子">npipe例子</a>
 <ul>
-<li><a href="#npipe例子">npipe例子</a></li>
+<li><a href="#输出">输出</a></li>
 </ul></li>
 <li><a href="#npipe在以太坊应用">npipe在以太坊应用</a></li>
+<li><a href="#总结">总结</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -236,20 +239,26 @@
 
                 
 
+<h2 id="背景">背景</h2>
+
+<p>以太坊rpc有4种实现方式分别是<strong>inproc</strong>，<strong>ipc</strong>，<strong>http</strong>，<strong>ws</strong>。inproc是进程内部调用，为console使用；http是以http接口方式提供访问；ws是以websocket的方式提供访问。</p>
+
+<p><strong>ipc</strong>便是进程间通信，以npipe为底层实现，上层采用Json-Rpc为消息格式，并使用go的reflect包实现对内部Api的调用。  ipc通信是用于同一个主机间钱包等客户端与geth之间的通信。</p>
+
 <h2 id="npipe">npipe</h2>
 
 <p>npipe是以Windows命名为管道(pipes)的一个go语言库。</p>
 
 <p><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa365780"><strong>pipes</strong></a>:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为管道服务器。连接到管道的进行时管道客户端。一个进程将信息写入到管道，然后另一个进程从管道读取信息。</p>
 
-<p><strong><a href="https://github.com/natefinch/npipe">npipe</a></strong>：npipe是基于stdlib包实现，并实现了 Dial, Listen, and Accept方法，同时分装了net.Conn and net.Listener。它支持rpc调用。</p>
+<p><strong><a href="https://github.com/natefinch/npipe">npipe</a></strong>：npipe是基于stdlib包实现，并实现了 Dial, Listen, 和Accept方法，同时分装了net.Conn 和 net.Listener。可以以net来实现rpc调用。</p>
 
 <p><strong><a href="https://zh.wikipedia.org/wiki/Stdlib.h">stdlib</a></strong>：stdlib.h是C标准函数库的头文件，声明了数值与字符串转换函数, 伪随机数生成函数, 动态内存分配函数, 进程控制函数等公共函数。 C++程序应调用等价的cstdlib头文件。这里主要是使用到了内存相关函数。</p>
 
-<h3 id="npipe例子">npipe例子</h3>
+<h2 id="npipe例子">npipe例子</h2>
 
 <p>npipe首先创建服务端，再用客户端调用。
-创建pipeserver.go</p>
+c首先是创建服务端 pipeserver.go</p>
 
 <pre><code class="language-go">import (
 	&quot;fmt&quot;
@@ -303,7 +312,7 @@ func server(endpoint string )  {
 }
 </code></pre>
 
-<p>创建客户端pipeclient.go</p>
+<p>###再次创建客户端pipeclient.go</p>
 
 <pre><code class="language-go">import (
 	&quot;fmt&quot;
@@ -331,13 +340,25 @@ func main() {
 }
 </code></pre>
 
+<h3 id="输出">输出</h3>
+
+<pre><code class="language-go">Hi client!
+</code></pre>
+
+<pre><code class="language-go">Hi server!
+</code></pre>
+
 <h2 id="npipe在以太坊应用">npipe在以太坊应用</h2>
 
-<p>以太坊rpc有4种实现方式分别是<strong>inproc</strong>，<strong>ipc</strong>，<strong>http</strong>，<strong>ws</strong>。inproc是进程内部调用为console使用，http是以http接口方式提供访问，ws是以websocket的方式提供访问。</p>
+<p>以太坊中ipc位于rpc包中，以下是启动方式：
+ipc.go</p>
 
-<p><strong>ipc</strong>变是进程间通信，以npipe为底层实现，上层采用Json-Rpc为消息格式，并使用go的reflect包实现对内部Api的调用。</p>
+<pre><code class="language-go">//开启连接
+func ipcListen(endpoint string) (net.Listener, error) {
+	return npipe.Listen(endpoint)
+}
 
-<pre><code class="language-go">//ipc 服务端
+//ipc 服务端接收连接
 func (srv *Server) ServeListener(l net.Listener) error {
 	for {
 		//接收连接
@@ -350,13 +371,22 @@ func (srv *Server) ServeListener(l net.Listener) error {
 		go srv.ServeCodec(NewJSONCodec(conn), OptionMethodInvocation|OptionSubscriptions)
 	}
 }
+``` go
+客户端调用方法：
+
+``` go
+func (c *Client) CallContext(ctx context.Context, result interface{}, method string, args ...interface{})
 </code></pre>
 
-<p>调用方法：</p>
+<p>server端最终调用底层的方法</p>
 
 <pre><code class="language-go">//server.go 311行调用内部方法
 reply := req.callb.method.Func.Call(arguments)
 </code></pre>
+
+<h2 id="总结">总结</h2>
+
+<p>以往不同进程间通信我们一般会采用tcp或者http的方式调用，但是如果用管道通信库npipe可以减去网卡的通信；直接基于内存的通信性能和内存的开销达到最低。</p>
 
             </article>
 
@@ -386,7 +416,7 @@ reply := req.callb.method.Func.Call(arguments)
     <section id="datecount">
         <h4 id="date"> Fri Apr 27, 2018</h4>
     </section>
-    <h5 id="wc">800 Words|Read in about 2 Min</h5>
+    <h5 id="wc">1000 Words|Read in about 2 Min</h5>
     <h5 id="tags">Tags: 
         
         <a href="https://chainvm.io/tags/blockchain/">blockchain</a> &nbsp;

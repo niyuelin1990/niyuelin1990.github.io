@@ -8,7 +8,7 @@
     <language>zh-cn</language>
     <managingEditor>ctowt@163.com (wt)</managingEditor>
     <webMaster>ctowt@163.com (wt)</webMaster>
-    <lastBuildDate>Wed, 25 Apr 2018 18:13:43 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Apr 2018 15:02:50 +0800</lastBuildDate>
     
 	<atom:link href="https://chainvm.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,13 +23,12 @@
     </item>
     
     <item>
-      <title>anzhaung</title>
-      <link>https://chainvm.io/posts/docker/install_docker/</link>
-      <pubDate>Wed, 25 Apr 2018 18:13:43 +0800</pubDate>
+      <title>以太坊ipc实现方式以及golang有用的库---npipe</title>
+      <link>https://chainvm.io/posts/blockchain/npipe/</link>
+      <pubDate>Fri, 27 Apr 2018 15:02:50 +0800</pubDate>
       <author>ctowt@163.com (wt)</author>
-      <guid>https://chainvm.io/posts/docker/install_docker/</guid>
-      <description> categories: [&amp;ldquo;docker&amp;rdquo;] keywords: [&amp;ldquo;docker&amp;rdquo;] tags: [&amp;ldquo;docker&amp;rdquo;]
-ddd </description>
+      <guid>https://chainvm.io/posts/blockchain/npipe/</guid>
+      <description>npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为</description>
     </item>
     
     <item>

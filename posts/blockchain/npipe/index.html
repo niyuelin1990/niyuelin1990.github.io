@@ -5,21 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> Blockchain - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
+  <title> 以太坊ipc实现方式以及golang有用的库---npipe - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
   <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
-  <meta property="og:title" content="Blockchain" />
-  <meta name="twitter:title" content="Blockchain" />
+  <meta property="og:title" content="以太坊ipc实现方式以及golang有用的库---npipe" />
+  <meta name="twitter:title" content="以太坊ipc实现方式以及golang有用的库---npipe" />
+  <meta name="description" content="npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为">
+  <meta property="og:description" content="npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为">
+  <meta name="twitter:description" content="npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为">
   <meta name="author" content="{Description { .Site.Author.name }}"/>
   <link href='https://chainvm.io/favicon.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
   <meta name="twitter:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://chainvm.io/tags/blockchain/" />
+  <meta property="og:url" content="https://chainvm.io/posts/blockchain/npipe/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="wt" />
 
   <meta name="generator" content="Hugo 0.40" />
-  <link rel="canonical" href="https://chainvm.io/tags/blockchain/" />
+  <link rel="canonical" href="https://chainvm.io/posts/blockchain/npipe/" />
   <link rel="alternate" href="https://chainvm.io/index.xml" type="application/rss+xml" title="wt">
   <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.css" crossorigin="anonymous">
@@ -164,14 +167,26 @@
 </nav>
 
     
+  
+  
+  
+
+
+
+
+  
+
   <header class="header-section ">
+    
     <div class="intro-header no-img">
+      
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-md-offset-0">
-            <div class="page-heading">
-              <h1>#Blockchain</h1>
-              <hr class="small">
+            <div class="posts-heading">
+                <h1 align="center">以太坊ipc实现方式以及golang有用的库---npipe</h1>
+                
+                
             </div>
           </div>
         </div>
@@ -179,83 +194,238 @@
     </div>
   </header>
 
+
     
-  <div class="container" role="main">
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
     <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Apr 27, 2018</h4>
+    </section>
+    <h5 id="wc">800 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
         
-        <div class="posts-list">
-          
-            <article class="post-preview">
-              <a href="https://chainvm.io/posts/blockchain/npipe/">
-                <h2 class="post-title">以太坊ipc实现方式以及golang有用的库---npipe</h2>
+        <a href="https://chainvm.io/tags/blockchain/">blockchain</a> &nbsp;
+        
+        <a href="https://chainvm.io/tags/npipe/">Npipe</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#npipe">npipe</a>
+<ul>
+<li><a href="#npipe例子">npipe例子</a></li>
+</ul></li>
+<li><a href="#npipe在以太坊应用">npipe在以太坊应用</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+
 
                 
-              </a>
 
-              <p class="post-meta">
-                Posted on April 27, 2018
-              </p>
-              <div class="post-entry">
-                
-                  npipe npipe是以Windows命名为管道(pipes)的一个go语言库。 pipes:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为
-                  <a href="https://chainvm.io/posts/blockchain/npipe/" class="post-read-more">[Read More]</a>
-                
-              </div>
+<h2 id="npipe">npipe</h2>
 
-              
-                <span class="post-meta">
-                  
-                    #<a href="https://chainvm.io/tags/blockchain/">blockchain</a>&nbsp;
-                  
-                    #<a href="https://chainvm.io/tags/npipe/">Npipe</a>&nbsp;
-                  
-                </span>
-              
+<p>npipe是以Windows命名为管道(pipes)的一个go语言库。</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa365780"><strong>pipes</strong></a>:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为管道服务器。连接到管道的进行时管道客户端。一个进程将信息写入到管道，然后另一个进程从管道读取信息。</p>
+
+<p><strong><a href="https://github.com/natefinch/npipe">npipe</a></strong>：npipe是基于stdlib包实现，并实现了 Dial, Listen, and Accept方法，同时分装了net.Conn and net.Listener。它支持rpc调用。</p>
+
+<p><strong><a href="https://zh.wikipedia.org/wiki/Stdlib.h">stdlib</a></strong>：stdlib.h是C标准函数库的头文件，声明了数值与字符串转换函数, 伪随机数生成函数, 动态内存分配函数, 进程控制函数等公共函数。 C++程序应调用等价的cstdlib头文件。这里主要是使用到了内存相关函数。</p>
+
+<h3 id="npipe例子">npipe例子</h3>
+
+<p>npipe首先创建服务端，再用客户端调用。
+创建pipeserver.go</p>
+
+<pre><code class="language-go">import (
+	&quot;fmt&quot;
+	&quot;github.com/natefinch/npipe&quot;
+	&quot;bufio&quot;
+	&quot;net&quot;
+)
+
+func main() {
+
+	//endpoint := fmt.Sprintf(&quot;test-ipc-%d-%d&quot;, os.Getpid(), rand.Int63())
+
+	//if runtime.GOOS == &quot;windows&quot; {
+	//	endpoint = `\\.\pipe\` + endpoint
+	//} else {
+	//	endpoint = os.TempDir() + &quot;/&quot; + endpoint
+	//}
+	// 开启连接
+	endpoint:=`\\.\pipe\test-ipc-22244-5577006791947779410`
+	fmt.Println(endpoint)
+
+	server(endpoint)
+}
+
+//创建服务端
+func server(endpoint string )  {
+	ln, err := npipe.Listen(endpoint)
+	if err != nil {
+		panic(err)
+	}
+	func() {
+		for {
+			conn, err := ln.Accept()
+			if err != nil {
+				// handle error
+				continue
+			}
+			// handle connection like any other net.Conn
+			go func(conn net.Conn) {
+				r := bufio.NewReader(conn)
+				msg, err := r.ReadString('\n')
+				if err != nil {
+					// handle error
+					return
+				}
+				fmt.Println(msg)
+				fmt.Fprintln(conn, &quot;Hi client!&quot;)
+			}(conn)
+		}
+	}()
+}
+</code></pre>
+
+<p>创建客户端pipeclient.go</p>
+
+<pre><code class="language-go">import (
+	&quot;fmt&quot;
+	&quot;github.com/natefinch/npipe&quot;
+	&quot;bufio&quot;
+)
+
+func main() {
+	endpoint:=`\\.\pipe\test-ipc-22244-5577006791947779410`
+	conn, err := npipe.Dial(endpoint)
+	if err != nil {
+		// handle error
+	}
+	if _, err := fmt.Fprintln(conn, &quot;Hi server!&quot;); err != nil {
+		// handle error
+		fmt.Println(err)
+	}
+	r := bufio.NewReader(conn)
+	msg, err := r.ReadString('\n')
+	if err != nil {
+		// handle eror
+		fmt.Println(err)
+	}
+	fmt.Println(msg)
+}
+</code></pre>
+
+<h2 id="npipe在以太坊应用">npipe在以太坊应用</h2>
+
+<p>以太坊rpc有4种实现方式分别是<strong>inproc</strong>，<strong>ipc</strong>，<strong>http</strong>，<strong>ws</strong>。inproc是进程内部调用为console使用，http是以http接口方式提供访问，ws是以websocket的方式提供访问。</p>
+
+<p><strong>ipc</strong>变是进程间通信，以npipe为底层实现，上层采用Json-Rpc为消息格式，并使用go的reflect包实现对内部Api的调用。</p>
+
+<pre><code class="language-go">//ipc 服务端
+func (srv *Server) ServeListener(l net.Listener) error {
+	for {
+		//接收连接
+		conn, err := l.Accept()
+		if err != nil {
+			return err
+		}
+		log.Trace(fmt.Sprint(&quot;accepted conn&quot;, conn.RemoteAddr()))
+		//解析json数据
+		go srv.ServeCodec(NewJSONCodec(conn), OptionMethodInvocation|OptionSubscriptions)
+	}
+}
+</code></pre>
+
+<p>调用方法：</p>
+
+<pre><code class="language-go">//server.go 311行调用内部方法
+reply := req.callb.method.Func.Call(arguments)
+</code></pre>
 
             </article>
-          
-            <article class="post-preview">
-              <a href="https://chainvm.io/posts/blockchain/introduce_blockchain/">
-                <h2 class="post-title">区块链简介</h2>
 
+            <ul class="pager blog-pager">
                 
-              </a>
-
-              <p class="post-meta">
-                Posted on April 25, 2018
-              </p>
-              <div class="post-entry">
+                <li class="previous">
+                    <a href="https://chainvm.io/posts/golang/get_goroutine_id/" data-toggle="tooltip" data-placement="top" title="Golang获取goroutine ID">&larr; Previous Post</a>
+                </li>
+                 
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/blockchain/introduce_blockchain/">区块链简介</a></li>
+                    
+                </ul>
                 
-                  1. 区块链的本质 区块链是什么？一句话，它是一种特殊的分布式数据库。 首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可
-                  <a href="https://chainvm.io/posts/blockchain/introduce_blockchain/" class="post-read-more">[Read More]</a>
-                
-              </div>
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Apr 27, 2018</h4>
+    </section>
+    <h5 id="wc">800 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://chainvm.io/tags/blockchain/">blockchain</a> &nbsp;
+        
+        <a href="https://chainvm.io/tags/npipe/">Npipe</a> &nbsp;
+    </h5>
+</div>
 
-              
-                <span class="post-meta">
-                  
-                    #<a href="https://chainvm.io/tags/blockchain/">blockchain</a>&nbsp;
-                  
-                    #<a href="https://chainvm.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
-                  
-                </span>
-              
-
-            </article>
-          
-        </div>
-        
-      </div>
-    <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        
-
-        
-        
-        
-      </div>
+            
+            </div>
+            
+			
+               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    <div>
+        <h2> Comments </h2>
     </div>
-  </div>
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://imroc.io/static/gitment/default.css">
+    <script src="https://imroc.io/static/gitment/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+			owner: 'shaocongcong', 
+			repo: 'shaocongcong.github.io', 
+            oauth: {
+				client_id: '',
+				client_secret: '',
+            },
+        })
+        gitment.render('container')
+    </script>
+</aside>
+</div>
+
+			
+        </div>
+    </div>
+    </section>
+</div>
 
     <footer>
   <div class="container">

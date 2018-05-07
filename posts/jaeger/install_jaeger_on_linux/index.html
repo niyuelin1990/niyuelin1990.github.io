@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Linux部署Jaeger - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
+  <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
+  <meta property="og:title" content="Linux部署Jaeger" />
+  <meta name="twitter:title" content="Linux部署Jaeger" />
+  <meta name="description" content="最近在折腾Jaeger，Jaeger官网都是介绍如何通过Docker部署，二进制部署文档基本没有（已咨询过作者，作者说没文档！你参考Dock">
+  <meta property="og:description" content="最近在折腾Jaeger，Jaeger官网都是介绍如何通过Docker部署，二进制部署文档基本没有（已咨询过作者，作者说没文档！你参考Dock">
+  <meta name="twitter:description" content="最近在折腾Jaeger，Jaeger官网都是介绍如何通过Docker部署，二进制部署文档基本没有（已咨询过作者，作者说没文档！你参考Dock">
+  <meta name="author" content="{Description { .Site.Author.name }}"/>
+  <link href='https://chainvm.io/favicon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://chainvm.io/posts/jaeger/install_jaeger_on_linux/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="wt" />
+
+  <meta name="generator" content="Hugo 0.40" />
+  <link rel="canonical" href="https://chainvm.io/posts/jaeger/install_jaeger_on_linux/" />
+  <link rel="alternate" href="https://chainvm.io/index.xml" type="application/rss+xml" title="wt">
+  <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://chainvm.io/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+  <link rel="stylesheet" href="https://imroc.io/static/prism/prism.css" />
+
+  
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.2/default-skin/default-skin.min.css" crossorigin="anonymous" />
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://chainvm.io/">wt</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://chainvm.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://chainvm.io/categories/docker">docker</a>
+                
+                
+                  <a href="https://chainvm.io/categories/blockchain">blockchain</a>
+                
+                
+                  <a href="https://chainvm.io/categories/foundationdb">db</a>
+                
+                
+                  <a href="https://chainvm.io/categories/golang">golang</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="about" href="/about/about/">about</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="wt" href="https://chainvm.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" alt="wt" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/shaocongcong/image/upload/v1525412622/blog/trace/opentracing/jaeger-logo.svg" data-img-desc-1="jaeger"></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>Linux部署Jaeger</h1>
+                     
+                    <span class="post-meta">
+  
+  Posted on May 4, 2018
+  
+  
+</span>
+
+
+                    
+                  
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Linux部署Jaeger</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri May 4, 2018</h4>
+    </section>
+    <h5 id="wc">1800 Words|Read in about 4 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://chainvm.io/tags/%E7%9B%91%E6%8E%A7/">监控</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#jaeger">Jaeger</a>
+<ul>
+<li><a href="#jaeger组成">Jaeger组成</a></li>
+<li><a href="#jaeger服务之间关系">Jaeger服务之间关系</a></li>
+</ul></li>
+<li><a href="#打造所需原材料">打造所需原材料</a></li>
+<li><a href="#docker部署">Docker部署</a>
+<ul>
+<li><a href="#centeros-7-安装docker">CenterOS 7 安装Docker</a></li>
+<li><a href="#替换docker镜像源">替换Docker镜像源</a></li>
+</ul></li>
+<li><a href="#cassandra部署">Cassandra部署</a>
+<ul>
+<li><a href="#docker下载cassandra">Docker下载Cassandra</a></li>
+<li><a href="#docker部署cassandra集群">Docker部署Cassandra集群</a></li>
+<li><a href="#导入jaeger表结构">导入Jaeger表结构</a></li>
+</ul></li>
+<li><a href="#jaeger部署">Jaeger部署</a>
+<ul>
+<li><a href="#collector部署">Collector部署</a></li>
+<li><a href="#query部署">Query部署</a></li>
+<li><a href="#agent部署">Agent部署</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+
+
+                
+
+<p>最近在折腾Jaeger，Jaeger官网都是介绍如何通过Docker部署，二进制部署文档基本没有（已咨询过作者，作者说没文档！你参考Docker自己部署好了！！！），所以打算写一篇Linux部署。</p>
+
+<h3 id="jaeger">Jaeger</h3>
+
+<p>Jaeger是Uber推出的一款调用链追踪系统，类似于Zipkin和Dapper，为微服务调用追踪而生。 其主要用于多个服务调用过程追踪分析，图形化服务调用轨迹，便于快速准确定位问题。</p>
+
+<h4 id="jaeger组成">Jaeger组成</h4>
+
+<ul>
+<li>前端界面展示UI</li>
+<li>数据存储Cassandra</li>
+<li>数据查询Query</li>
+<li>数据收集处理Collector</li>
+<li>客户端代理Agent</li>
+
+<li><p>客户端库jaeger-client-*</p>
+
+<h4 id="jaeger服务之间关系">Jaeger服务之间关系</h4>
+
+<p><img src="https://res.cloudinary.com/shaocongcong/image/upload/v1525423400/blog/trace/opentracing/jaeger-architecture.png" alt="Jaeger服务之间关系" /></p></li>
+</ul>
+
+<h3 id="打造所需原材料">打造所需原材料</h3>
+
+<ul>
+<li><a href="https://www.docker.com">Docker</a></li>
+<li><a href="https://cassandra.apache.org">Cassandra</a></li>
+<li><a href="https://github.com/jaegertracing/jaeger/releases">Jaeger二进制安装包</a></li>
+<li><a href="https://github.com/jaegertracing/jaeger">Jaeger源码</a></li>
+<li><a href="http://nginx.org">Nginx</a></li>
+</ul>
+
+<h3 id="docker部署">Docker部署</h3>
+
+<h4 id="centeros-7-安装docker">CenterOS 7 安装Docker</h4>
+
+<p>关于Docker部署网上到处都是，我使用的是CentOS 7，其他版本自行查找，这里就用最简单粗暴的方式安装。</p>
+
+<pre><code class="language-shell">yum update -y
+yum -y install docker
+systemctl start docker
+</code></pre>
+
+<h4 id="替换docker镜像源">替换Docker镜像源</h4>
+
+<p>由于国内下载镜像比较慢，这里我将Docker镜像源替换成阿里云。
+注册一个阿里云用户,访问 <a href="https://cr.console.aliyun.com/#/accelerator">https://cr.console.aliyun.com/#/accelerator</a> 获取专属Docker加速器地址。
+如图：
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1525414262/docker_ali_mirror.jpg" alt="ali_docker_mirror" /></p>
+
+<p>针对Docker客户端版本大于1.10.0的用户可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器：</p>
+
+<pre><code class="language-shell">sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+{
+  &quot;registry-mirrors&quot;: [&quot;骚年您老人家的阿里镜像加速器地址&quot;]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+
+<p>OK！Docker部署到此为止，有人会问我Jaeger用二进制部署了，为啥还需要部署Docker。这里是一个悲伤的故事，Docker是用来部署Cassandra的。因为Cassandra是Java实现的，部署要配置一大堆我不太了解的Java环境，比较麻烦，既然有Docker这种神奇何不好好利用一下呢！部署Cassandra的时候我会把存储挂在到本地硬盘，这样就避免了Docker服务异常关闭导致数据丢失了，所以使用Docker部署无伤大雅，这里又有人会问为何不用Docker部署Jaeger，这又是一件悲伤的故事！！！因为Jaeger本身只有链路跟踪，并没有更高级的业务功能（类似异常告警），所以我们可能会针对Jaeger进行二次开发。So不如自己部署一套，好用来做研究。好了废话不多说让我们继续Jaeger部署之旅吧！</p>
+
+<h3 id="cassandra部署">Cassandra部署</h3>
+
+<p>Cassandra是一套开源分布式NoSQL数据库系统。由Facebook开发，用于储存收件箱等简单格式数据，集GoogleBigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身.
+Cassandra是一个混合型的非关系的数据库，类似于Google的BigTable。P2P去中心化的存储。很多方面都可以称之为Dynamo 2.0。</p>
+
+<h4 id="docker下载cassandra">Docker下载Cassandra</h4>
+
+<p>前面已经啰嗦过为什么试用Docker部署Cassandra了，这里就简单介绍如何部署.</p>
+
+<pre><code class="language-shell">docker search cassandra
+docker pull docker.io/cassandra
+</code></pre>
+
+<h4 id="docker部署cassandra集群">Docker部署Cassandra集群</h4>
+
+<p>我准备了3台服务器</p>
+
+<pre><code class="language-shell">10.100.7.46
+10.100.7.47
+10.100.7.48
+</code></pre>
+
+<p>10.100.7.46这台服务器作为种子点</p>
+
+<pre><code class="language-shell">docker run --name some-cassandra -v /httx/cassandra/data:/var/lib/cassandra -d -e CASSANDRA_BROADCAST_ADDRESS=10.100.7.47 -p 7000:7000 -p 9042:9042  -e CASSANDRA_SEEDS=10.100.7.46 cassandra:latest
+docker run --name some-cassandra -v /httx/cassandra/data:/var/lib/cassandra -d -e CASSANDRA_BROADCAST_ADDRESS=10.100.7.48 -p 7000:7000 -p 9042:9042  -e CASSANDRA_SEEDS=10.100.7.46 cassandra:latest
+docker run --name some-cassandra -v /httx/cassandra/data:/var/lib/cassandra -d -e CASSANDRA_BROADCAST_ADDRESS=10.100.7.48 -p 7000:7000 -p 9042:9042  -e CASSANDRA_SEEDS=10.100.7.46 cassandra:latest
+</code></pre>
+
+<p>/httx/cassandra/data这个是我的数据本地保存目录，9042:9042是将客户端链接地址暴露出来。简单吧！</p>
+
+<h4 id="导入jaeger表结构">导入Jaeger表结构</h4>
+
+<p>导入Jaeger表结构，这里不得不吐槽一下Jaeger！Jaeger二进制安装包里根本没有数据sql文件，而且没有任何文档告诉你SQL文件在哪里找，没安装文档！我表示是崩溃的，最终在源码目录的一个角落中找到SQL文件，路径展示一下：</p>
+
+<pre><code>$GOPATH/src/github.com/jaegertracing/jaeger/plugin/storage/cassandra/schema/v001.cql.tmpl
+</code></pre>
+
+<pre><code class="language-shell">格式：
+cqlsh -h HOST -p PORT -f fileName
+cqlsh 10.100.7.46 -f $GOPATH/src/github.com/jaegertracing/jaeger/plugin/storage/cassandra/schema/v001.cql.tmpl 
+</code></pre>
+
+<p>上面的命令是我搜索来的，因为在导入之前我已经手动一条一条加进去了(＞﹏＜)!如果不好用的话，读者可以直接cqlsh一条一条黏上去！！！！
+<!-- ### Nginx部署 --></p>
+
+<h3 id="jaeger部署">Jaeger部署</h3>
+
+<p>ok! 现在正式进入主题：Jaeger安装。- <a href="https://github.com/jaegertracing/jaeger/releases">Jaeger二进制安装包</a></p>
+
+<pre><code class="language-shell">tar -zxvf jaeger-1.4.1-linux-amd64.tar.gz
+mv jaeger-1.4.1-linux-amd64 jaeger
+</code></pre>
+
+<h4 id="collector部署">Collector部署</h4>
+
+<pre><code class="language-shell">mkdir collector
+mv jaeger-collector collector/collector
+nohup ./collector --cassandra.keyspace=jaeger_v1_datacenter1  --cassandra.servers=10.100.7.46,10.100.7.47,10.100.7.48 --collector.zipkin.http-port=9411 1&gt;1.log 2&gt;2.log &amp;
+</code></pre>
+
+<h4 id="query部署">Query部署</h4>
+
+<pre><code class="language-shell">mkdir query
+mv jaeger-query query/query
+mv jaeger-ui-build/build query/
+cd query
+nohup ./query --cassandra.keyspace jaeger_v1_datacenter1  --cassandra.servers 10.100.7.46,10.100.7.47,10.100.7.48 --query.static-files=./build  1&gt;1.log 2&gt;2.log &amp;
+</code></pre>
+
+<p>ok 访问你Query的地址 htpp://queryIp:16686 就可以看到久违的jaeger的页面了！
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1525410176/blog/trace/opentracing/jaeger_ui.png" alt="" /></p>
+
+<h4 id="agent部署">Agent部署</h4>
+
+<p>Agent 部署就比较简单了，指定collector地址就OK了！</p>
+
+<pre><code class="language-shell">nohup ./jaeger-agent  --collector.host-port=10.100.7.46:14267   1&gt;1.log 2&gt;2.log &amp;
+</code></pre>
+
+<p>See you!</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://chainvm.io/posts/jaeger/opentracing_quick-start/" data-toggle="tooltip" data-placement="top" title="一秒开始OpenTracing">&larr; Previous Post</a>
+                </li>
+                 
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/jaeger/opentracing_quick-start/">一秒开始OpenTracing</a></li>
+                    
+                    <li><a href="/posts/golang/get_goroutine_id/">Golang获取goroutine ID</a></li>
+                    
+                    <li><a href="/posts/golang/resource_pool/">Golang简单的对象池</a></li>
+                    
+                    <li><a href="/posts/golang/golang-append/">golang中append函数返回值必须有变量接收的原因探究</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri May 4, 2018</h4>
+    </section>
+    <h5 id="wc">1800 Words|Read in about 4 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://chainvm.io/tags/%E7%9B%91%E6%8E%A7/">监控</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+			
+               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    <div>
+        <h2> Comments </h2>
+    </div>
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://imroc.io/static/gitment/default.css">
+    <script src="https://imroc.io/static/gitment/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+			owner: 'shaocongcong', 
+			repo: 'shaocongcong.github.io', 
+            oauth: {
+				client_id: '',
+				client_secret: '',
+            },
+        })
+        gitment.render('container')
+    </script>
+</aside>
+</div>
+
+			
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ctowt@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/shaocongcong" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://chainvm.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017
+          
+            
+              <a href="imwt.io">wt</a>
+                      
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://chainvm.io/">wt</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.2/photoswipe.js"></script>
+<script src="https://chainvm.io/js/auto-render.min.js"></script>
+<script src="https://chainvm.io/js/main.js"></script>
+<script src="https://imroc.io/static/prism/prism.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

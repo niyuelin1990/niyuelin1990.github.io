@@ -5,24 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> 以太坊ipc实现方式以及golang有用的库---npipe - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
+  <title> 一秒开始OpenTracing - imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang</title>
   <meta name="description" content="imwt.io|wt的博客|Cloud Native|Kubernetes|Go|Golang" />
-  <meta property="og:title" content="以太坊ipc实现方式以及golang有用的库---npipe" />
-  <meta name="twitter:title" content="以太坊ipc实现方式以及golang有用的库---npipe" />
-  <meta name="description" content="背景 以太坊rpc有4种实现方式分别是inproc，ipc，http，ws。inproc是进程内部调用，为console使用；http是以ht">
-  <meta property="og:description" content="背景 以太坊rpc有4种实现方式分别是inproc，ipc，http，ws。inproc是进程内部调用，为console使用；http是以ht">
-  <meta name="twitter:description" content="背景 以太坊rpc有4种实现方式分别是inproc，ipc，http，ws。inproc是进程内部调用，为console使用；http是以ht">
+  <meta property="og:title" content="一秒开始OpenTracing" />
+  <meta name="twitter:title" content="一秒开始OpenTracing" />
+  <meta name="description" content="背景 随着应用架构的演变，从单体系统渐渐的转变为微服务架构，其中业务调用关系也转变为服务与服务之间的调用与请求。分布式监控系统也应运而起，随着">
+  <meta property="og:description" content="背景 随着应用架构的演变，从单体系统渐渐的转变为微服务架构，其中业务调用关系也转变为服务与服务之间的调用与请求。分布式监控系统也应运而起，随着">
+  <meta name="twitter:description" content="背景 随着应用架构的演变，从单体系统渐渐的转变为微服务架构，其中业务调用关系也转变为服务与服务之间的调用与请求。分布式监控系统也应运而起，随着">
   <meta name="author" content="{Description { .Site.Author.name }}"/>
   <link href='https://chainvm.io/favicon.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
   <meta name="twitter:image" content="https://res.cloudinary.com/shaocongcong/image/upload/v1524144512/blog/logo.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://chainvm.io/posts/blockchain/npipe/" />
+  <meta property="og:url" content="https://chainvm.io/posts/jaeger/opentracing_quick-start/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="wt" />
 
   <meta name="generator" content="Hugo 0.40" />
-  <link rel="canonical" href="https://chainvm.io/posts/blockchain/npipe/" />
+  <link rel="canonical" href="https://chainvm.io/posts/jaeger/opentracing_quick-start/" />
   <link rel="alternate" href="https://chainvm.io/index.xml" type="application/rss+xml" title="wt">
   <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.7.1/katex.min.css" crossorigin="anonymous">
@@ -175,8 +175,40 @@
 
 
   
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/shaocongcong/image/upload/v1525252394/blog/trace/opentracing/tracing_kenan.jpg" data-img-desc-1="tracing"></div>
+  
 
-  <header class="header-section ">
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>一秒开始OpenTracing</h1>
+                     
+                    <span class="post-meta">
+  
+  Posted on May 2, 2018
+  
+  
+</span>
+
+
+                    
+                  
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
     
     <div class="intro-header no-img">
       
@@ -184,7 +216,7 @@
         <div class="row">
           <div class="col-lg-12 col-md-12 col-md-offset-0">
             <div class="posts-heading">
-                <h1 align="center">以太坊ipc实现方式以及golang有用的库---npipe</h1>
+                <h1 align="center">一秒开始OpenTracing</h1>
                 
                 
             </div>
@@ -204,14 +236,12 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> Fri Apr 27, 2018</h4>
+        <h4 id="date"> Wed May 2, 2018</h4>
     </section>
-    <h5 id="wc">1000 Words|Read in about 2 Min</h5>
+    <h5 id="wc">900 Words|Read in about 2 Min</h5>
     <h5 id="tags">Tags: 
         
-        <a href="https://chainvm.io/tags/blockchain/">blockchain</a> &nbsp;
-        
-        <a href="https://chainvm.io/tags/npipe/">Npipe</a> &nbsp;
+        <a href="https://chainvm.io/tags/%E7%9B%91%E6%8E%A7/">监控</a> &nbsp;
     </h5>
 </div>
 
@@ -223,14 +253,13 @@
 <ul>
 <li>
 <ul>
-<li><a href="#背景">背景</a></li>
-<li><a href="#npipe">npipe</a></li>
-<li><a href="#npipe例子">npipe例子</a>
+<li>
 <ul>
-<li><a href="#输出">输出</a></li>
+<li><a href="#背景">背景</a></li>
+<li><a href="#opentracing">OpenTracing</a></li>
+<li><a href="#jaeger架构">Jaeger架构</a></li>
+<li><a href="#jaeger-docker部署">Jaeger Docker部署</a></li>
 </ul></li>
-<li><a href="#npipe在以太坊应用">npipe在以太坊应用</a></li>
-<li><a href="#总结">总结</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -239,165 +268,128 @@
 
                 
 
-<h2 id="背景">背景</h2>
+<h3 id="背景">背景</h3>
 
-<p>以太坊rpc有4种实现方式分别是<strong>inproc</strong>，<strong>ipc</strong>，<strong>http</strong>，<strong>ws</strong>。inproc是进程内部调用，为console使用；http是以http接口方式提供访问；ws是以websocket的方式提供访问。</p>
+<p>随着应用架构的演变，从单体系统渐渐的转变为微服务架构，其中业务调用关系也转变为服务与服务之间的调用与请求。分布式监控系统也应运而起，随着Google大爷的Dapper论文的发布，市面上出现了一大批优秀的监控系统，当然它们各有优缺点。</p>
 
-<p><strong>ipc</strong>便是进程间通信，以npipe为底层实现，上层采用Json-Rpc为消息格式，并使用go的reflect包实现对内部Api的调用。  ipc通信是用于同一个主机间钱包等客户端与geth之间的通信。</p>
+<ul>
+<li>Dapper(Google) : 各 tracer 的基础</li>
+<li>StackDriver Trace (Google)</li>
+<li>Zipkin(twitter)</li>
+<li>Appdash(golang)</li>
+<li>鹰眼(taobao)</li>
+<li>谛听(盘古，阿里云云产品使用的Trace系统)</li>
+<li>云图(蚂蚁Trace系统)</li>
+<li>sTrace(神马)</li>
+<li>X-ray(aws)</li>
+<li>jaeger(Uber)</li>
+</ul>
 
-<h2 id="npipe">npipe</h2>
+<p>当然本文的重点还是在opentracing。</p>
 
-<p>npipe是以Windows命名为管道(pipes)的一个go语言库。</p>
+<h3 id="opentracing">OpenTracing</h3>
 
-<p><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa365780"><strong>pipes</strong></a>:管道是一种使用共享内存进行通讯的方式。创建管道的过程称为管道服务器。连接到管道的进行时管道客户端。一个进程将信息写入到管道，然后另一个进程从管道读取信息。</p>
+<p>opentracing是一套分布式追踪协议，与平台，语言无关，统一接口，方便开发接入不同的分布式追踪系统。</p>
 
-<p><strong><a href="https://github.com/natefinch/npipe">npipe</a></strong>：npipe是基于stdlib包实现，并实现了 Dial, Listen, 和Accept方法，同时分装了net.Conn 和 net.Listener。可以以net来实现rpc调用。</p>
+<p>一个完整的opentracing调用链包含 Trace + span + 无限极分类</p>
 
-<p><strong><a href="https://zh.wikipedia.org/wiki/Stdlib.h">stdlib</a></strong>：stdlib.h是C标准函数库的头文件，声明了数值与字符串转换函数, 伪随机数生成函数, 动态内存分配函数, 进程控制函数等公共函数。 C++程序应调用等价的cstdlib头文件。这里主要是使用到了内存相关函数。</p>
+<ul>
+<li>Trace：追踪对象，一个Trace代表了一个服务或者流程在系统中的执行过程，如：test.com，redis，mysql等执行过程。一个Trace由多个span组成</li>
+<li>span：记录Trace在执行过程中的信息，如：查询的sql，请求的HTTP地址，RPC调用，开始、结束、间隔时间等。</li>
+<li>无限极分类：服务与服务之间使用无限极分类的方式，通过HTTP头部或者请求地址传输到最低层，从而把整个调用链串起来。</li>
+</ul>
 
-<h2 id="npipe例子">npipe例子</h2>
+<p>当然opentracing只是一套标准，要玩转还需要配合Jaeger。
+Jaeger 是 Uber 推出的一款开源分布式追踪系统，兼容 OpenTracing API。</p>
 
-<p>npipe首先创建服务端，再用客户端调用。
-c首先是创建服务端 pipeserver.go</p>
+<h3 id="jaeger架构">Jaeger架构</h3>
 
-<pre><code class="language-go">import (
-	&quot;fmt&quot;
-	&quot;github.com/natefinch/npipe&quot;
-	&quot;bufio&quot;
-	&quot;net&quot;
+<p><img src="https://res.cloudinary.com/shaocongcong/image/upload/v1525423400/blog/trace/opentracing/jaeger-architecture.png" alt="Jaeger服务之间关系" /></p>
+
+<h3 id="jaeger-docker部署">Jaeger Docker部署</h3>
+
+<p>用docker起一个示例Jaeger服务。</p>
+
+<pre><code>docker run -d -p 5775:5775/udp -p 16686:16686 jaegertracing/all-in-one:latest
+</code></pre>
+
+<p>访问 <a href="http://127.0.0.1:16686">http://127.0.0.1:16686</a></p>
+
+<p>如下图成功安装示例
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1525410176/blog/trace/opentracing/jaeger_ui.png" alt="" /></p>
+
+<p>好了废话说了一堆直接上代码如何使用Opentracing</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;log&quot;
+	&quot;time&quot;
+
+	&quot;github.com/opentracing/opentracing-go&quot;
+	&quot;github.com/uber/jaeger-client-go&quot;
+	&quot;github.com/uber/jaeger-client-go/config&quot;
 )
 
 func main() {
-
-	//endpoint := fmt.Sprintf(&quot;test-ipc-%d-%d&quot;, os.Getpid(), rand.Int63())
-
-	//if runtime.GOOS == &quot;windows&quot; {
-	//	endpoint = `\\.\pipe\` + endpoint
-	//} else {
-	//	endpoint = os.TempDir() + &quot;/&quot; + endpoint
-	//}
-	// 开启连接
-	endpoint:=`\\.\pipe\test-ipc-22244-5577006791947779410`
-	fmt.Println(endpoint)
-
-	server(endpoint)
-}
-
-//创建服务端
-func server(endpoint string )  {
-	ln, err := npipe.Listen(endpoint)
+	cfg := config.Configuration{
+		Sampler: &amp;config.SamplerConfig{
+			Type:  &quot;const&quot;,
+			Param: 1,
+		},
+		Reporter: &amp;config.ReporterConfig{
+			LogSpans:            true,
+			BufferFlushInterval: 1 * time.Second,
+			LocalAgentHostPort:  &quot;127.0.0.1:5775&quot;, // 数据上报地址
+		},
+	}
+	tracer, closer, err := cfg.New(
+		&quot;Hello Jaeger&quot;,
+		config.Logger(jaeger.StdLogger),
+	)
 	if err != nil {
-		panic(err)
+		log.Panic(err)
 	}
-	func() {
-		for {
-			conn, err := ln.Accept()
-			if err != nil {
-				// handle error
-				continue
-			}
-			// handle connection like any other net.Conn
-			go func(conn net.Conn) {
-				r := bufio.NewReader(conn)
-				msg, err := r.ReadString('\n')
-				if err != nil {
-					// handle error
-					return
-				}
-				fmt.Println(msg)
-				fmt.Fprintln(conn, &quot;Hi client!&quot;)
-			}(conn)
-		}
-	}()
-}
-</code></pre>
+	opentracing.SetGlobalTracer(tracer)
+	defer closer.Close()
 
-<p>###再次创建客户端pipeclient.go</p>
+	someFunction()
 
-<pre><code class="language-go">import (
-	&quot;fmt&quot;
-	&quot;github.com/natefinch/npipe&quot;
-	&quot;bufio&quot;
-)
-
-func main() {
-	endpoint:=`\\.\pipe\test-ipc-22244-5577006791947779410`
-	conn, err := npipe.Dial(endpoint)
-	if err != nil {
-		// handle error
-	}
-	if _, err := fmt.Fprintln(conn, &quot;Hi server!&quot;); err != nil {
-		// handle error
-		fmt.Println(err)
-	}
-	r := bufio.NewReader(conn)
-	msg, err := r.ReadString('\n')
-	if err != nil {
-		// handle eror
-		fmt.Println(err)
-	}
-	fmt.Println(msg)
-}
-</code></pre>
-
-<h3 id="输出">输出</h3>
-
-<pre><code class="language-go">Hi client!
-</code></pre>
-
-<pre><code class="language-go">Hi server!
-</code></pre>
-
-<h2 id="npipe在以太坊应用">npipe在以太坊应用</h2>
-
-<p>以太坊中ipc位于rpc包中，以下是启动方式：
-ipc.go</p>
-
-<pre><code class="language-go">//开启连接
-func ipcListen(endpoint string) (net.Listener, error) {
-	return npipe.Listen(endpoint)
 }
 
-//ipc 服务端接收连接
-func (srv *Server) ServeListener(l net.Listener) error {
-	for {
-		//接收连接
-		conn, err := l.Accept()
-		if err != nil {
-			return err
-		}
-		log.Trace(fmt.Sprint(&quot;accepted conn&quot;, conn.RemoteAddr()))
-		//解析json数据
-		go srv.ServeCodec(NewJSONCodec(conn), OptionMethodInvocation|OptionSubscriptions)
-	}
+func someFunction() {
+	parent := opentracing.GlobalTracer().StartSpan(&quot;hello&quot;)
+	defer parent.Finish()
+
+	child := opentracing.GlobalTracer().StartSpan(&quot;world&quot;, opentracing.ChildOf(parent.Context()))
+	defer child.Finish()
 }
-``` go
-客户端调用方法：
 
-``` go
-func (c *Client) CallContext(ctx context.Context, result interface{}, method string, args ...interface{})
 </code></pre>
 
-<p>server端最终调用底层的方法</p>
+<pre><code>go run main.go
 
-<pre><code class="language-go">//server.go 311行调用内部方法
-reply := req.callb.method.Func.Call(arguments)
+2018/05/04 13:08:11 Initializing logging reporter
+2018/05/04 13:08:11 Reporting span 3e27061246d7ffe6:3f98ef24d2fb1144:3e27061246d7ffe6:1
+2018/05/04 13:08:11 Reporting span 3e27061246d7ffe6:3e27061246d7ffe6:0:1
 </code></pre>
 
-<h2 id="总结">总结</h2>
+<p>然后到Jaeger去查询刚刚的调用，如下图：
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1525410983/blog/trace/opentracing/jaeger_hello_2.jpg" alt="span_hello_2" />
+<img src="https://res.cloudinary.com/shaocongcong/image/upload/v1525410983/blog/trace/opentracing/jaeger_hello_4.jpg" alt="span_hello_4" /></p>
 
-<p>以往不同进程间通信我们一般会采用tcp或者http的方式调用，但是如果用管道通信库npipe可以减去网卡的通信；直接基于内存的通信性能和内存的开销达到最低。</p>
+<p>OK ! 简单的示例就到这里结束了，这里Jaeger是通过docker部署的，官方在对于非docker部署方式的文档基本是无的，后面我会写一篇如果在Linux下通过二进制部署Jaeger，See you!</p>
 
             </article>
 
             <ul class="pager blog-pager">
                 
                 <li class="previous">
-                    <a href="https://chainvm.io/posts/golang/get_goroutine_id/" data-toggle="tooltip" data-placement="top" title="Golang获取goroutine ID">&larr; Previous Post</a>
+                    <a href="https://chainvm.io/posts/blockchain/npipe/" data-toggle="tooltip" data-placement="top" title="以太坊ipc实现方式以及golang有用的库---npipe">&larr; Previous Post</a>
                 </li>
                  
                 <li class="next">
-                    <a href="https://chainvm.io/posts/jaeger/opentracing_quick-start/" data-toggle="tooltip" data-placement="top" title="一秒开始OpenTracing">Next Post &rarr;</a>
+                    <a href="https://chainvm.io/posts/jaeger/install_jaeger_on_linux/" data-toggle="tooltip" data-placement="top" title="Linux部署Jaeger">Next Post &rarr;</a>
                 </li>
                 
             </ul>
@@ -407,7 +399,11 @@ reply := req.callb.method.Func.Call(arguments)
                 <h2>See Also</h2>
                 <ul>
                     
-                    <li><a href="/posts/blockchain/introduce_blockchain/">区块链简介</a></li>
+                    <li><a href="/posts/golang/get_goroutine_id/">Golang获取goroutine ID</a></li>
+                    
+                    <li><a href="/posts/golang/resource_pool/">Golang简单的对象池</a></li>
+                    
+                    <li><a href="/posts/golang/golang-append/">golang中append函数返回值必须有变量接收的原因探究</a></li>
                     
                 </ul>
                 
@@ -418,14 +414,12 @@ reply := req.callb.method.Func.Call(arguments)
             
 <div>
     <section id="datecount">
-        <h4 id="date"> Fri Apr 27, 2018</h4>
+        <h4 id="date"> Wed May 2, 2018</h4>
     </section>
-    <h5 id="wc">1000 Words|Read in about 2 Min</h5>
+    <h5 id="wc">900 Words|Read in about 2 Min</h5>
     <h5 id="tags">Tags: 
         
-        <a href="https://chainvm.io/tags/blockchain/">blockchain</a> &nbsp;
-        
-        <a href="https://chainvm.io/tags/npipe/">Npipe</a> &nbsp;
+        <a href="https://chainvm.io/tags/%E7%9B%91%E6%8E%A7/">监控</a> &nbsp;
     </h5>
 </div>
 

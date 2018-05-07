@@ -8,10 +8,28 @@
     <language>zh-cn</language>
     <managingEditor>ctowt@163.com (wt)</managingEditor>
     <webMaster>ctowt@163.com (wt)</webMaster>
-    <lastBuildDate>Fri, 27 Apr 2018 15:02:50 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 04 May 2018 13:40:21 +0800</lastBuildDate>
     
 	<atom:link href="https://chainvm.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux部署Jaeger</title>
+      <link>https://chainvm.io/posts/jaeger/install_jaeger_on_linux/</link>
+      <pubDate>Fri, 04 May 2018 13:40:21 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://chainvm.io/posts/jaeger/install_jaeger_on_linux/</guid>
+      <description>最近在折腾Jaeger，Jaeger官网都是介绍如何通过Docker部署，二进制部署文档基本没有（已咨询过作者，作者说没文档！你参考Dock</description>
+    </item>
+    
+    <item>
+      <title>一秒开始OpenTracing</title>
+      <link>https://chainvm.io/posts/jaeger/opentracing_quick-start/</link>
+      <pubDate>Wed, 02 May 2018 16:43:14 +0800</pubDate>
+      <author>ctowt@163.com (wt)</author>
+      <guid>https://chainvm.io/posts/jaeger/opentracing_quick-start/</guid>
+      <description>背景 随着应用架构的演变，从单体系统渐渐的转变为微服务架构，其中业务调用关系也转变为服务与服务之间的调用与请求。分布式监控系统也应运而起，随着</description>
+    </item>
     
     <item>
       <title>以太坊ipc实现方式以及golang有用的库---npipe</title>
